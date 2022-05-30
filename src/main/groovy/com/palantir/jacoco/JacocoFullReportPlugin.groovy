@@ -68,13 +68,14 @@ public class JacocoFullReportPlugin implements Plugin<Project> {
             // Filter for nulls since some JacocoReport tasks may have no classDirectories or sourceDirectories
             // configured, for example if there are no tests for a subproject.
             executionData project.files({ getReportTasks(project, fullReportTask).executionData })
-            getClassDirectories().setFrom(project.files({
-                getReportTasks(project, fullReportTask).collect { it.getClassDirectories() }.findAll {
+
+            classDirectories = project.files({
+                getReportTasks(project, fullReportTask).collect { it.classDirectories }.findAll {
                     it != null
                 }
-            }))
-            sourceDirectories.from = project.files({
-                getReportTasks(project, fullReportTask).collect { it.sourceDirectories.from }.findAll {
+            })
+            sourceDirectories = project.files({
+                getReportTasks(project, fullReportTask).collect { it.sourceDirectories }.findAll {
                     it != null
                 }
             })
