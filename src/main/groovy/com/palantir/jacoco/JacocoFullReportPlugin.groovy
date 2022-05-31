@@ -69,12 +69,12 @@ public class JacocoFullReportPlugin implements Plugin<Project> {
             // configured, for example if there are no tests for a subproject.
             executionData project.files({ getReportTasks(project, fullReportTask).executionData })
 
-            getClassDirectories().setFrom(project.files({
+            classDirectories.from = project.files({
                 getReportTasks(project, fullReportTask).collect { it.classDirectories }.findAll {
                     it != null
                 }
-            }))
-            sourceDirectories = project.files({
+            })
+            sourceDirectories.from = project.files({
                 getReportTasks(project, fullReportTask).collect { it.sourceDirectories }.findAll {
                     it != null
                 }
