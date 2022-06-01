@@ -61,7 +61,7 @@ public class JacocoFullReportPlugin implements Plugin<Project> {
                 executionData.files.any { it.exists() }
             }
             doFirst {
-                executionData = project.files(executionData.findAll { it.exists() }.flatten())
+                executionData.from = project.files(executionData.findAll { it.exists() }.flatten())
                 project.logger.info("Setting up jacocoFullReport for: " + getReportTasks(project, fullReportTask))
             }
 
